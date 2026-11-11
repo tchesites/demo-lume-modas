@@ -1,0 +1,391 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Monogram from '../components/Monogram.astro';
+import {
+  loja,
+  categorias,
+  tendencias,
+  depoimentos,
+  numeros,
+  whatsappLink,
+} from '../data/loja.js';
+
+import interior from '../assets/fotos/interior.jpg';
+import manequins from '../assets/fotos/manequins.jpg';
+import provador from '../assets/fotos/provador.jpg';
+import feminino from '../assets/fotos/feminino.jpg';
+import masculino from '../assets/fotos/masculino.jpg';
+import fachada from '../assets/fotos/fachada.jpg';
+
+const imagens = { interior, manequins, provador, feminino, masculino, fachada };
+
+const zapNovidades = whatsappLink(
+  'Olá! Vim pelo site e gostaria de ver as novidades.'
+);
+const zapProvador = whatsappLink(
+  'Olá! Vim pelo site e gostaria de separar algumas peças para provar.'
+);
+---
+
+<BaseLayout title="Moda feminina e masculina em Canoas">
+  <!-- ===== Hero ===== -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__grid">
+      <div class="hero__copy">
+        <p class="hero__eyebrow">Centro · Canoas</p>
+
+        <h1 class="hero__title" id="hero-title">
+          <span class="line"><span>A elegância</span></span>
+          <span class="line"><span>que acende</span></span>
+          <span class="line"><span><em>o seu estilo.</em></span></span>
+        </h1>
+
+        <p class="hero__lead">
+          Moda feminina e masculina, do P ao plus size, escolhida peça por peça
+          para o seu dia a dia — e para aquela ocasião que pede um pouco mais.
+        </p>
+
+        <div class="hero__actions">
+          <a class="btn btn--gold" href={zapNovidades} target="_blank" rel="noopener noreferrer">
+            Ver novidades no WhatsApp
+          </a>
+          <a class="btn btn--ghost" href="#vitrine">Conhecer a loja</a>
+        </div>
+
+        <div class="hero__proof">
+          <span class="sr-only">Nota 4,9 de 5 em avaliações.</span>
+          <span class="stars" aria-hidden="true">★★★★★</span>
+          <span><strong>4,9</strong> em avaliações · <strong>187</strong> depoimentos</span>
+          <span class="hero__dot" aria-hidden="true"></span>
+          <span><strong>{loja.instagram.seguidores}</strong> no Instagram</span>
+          <span class="hero__dot" aria-hidden="true"></span>
+          <span>Do <strong>P</strong> ao <strong>plus size</strong></span>
+        </div>
+      </div>
+
+      <div class="hero__media">
+        <Image
+          src={interior}
+          alt="Interior da Lume Modas com araras de roupa, manequim e espelho"
+          width={900}
+          loading="eager"
+          fetchpriority="high"
+        />
+        <div class="hero__plaque">
+          <span>Centro · Canoas</span>
+          <span>Rua Sete de Setembro, 820</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== A loja ===== -->
+  <section class="section section--creme" id="a-loja" aria-labelledby="loja-title">
+    <div class="wrap">
+      <div class="head">
+        <div class="head__title">
+          <p class="label label--dark">A loja</p>
+          <h2 class="loja__title" id="loja-title">
+            A loja<br /><em>da sua família.</em>
+          </h2>
+        </div>
+        <p class="head__aside">
+          Tem roupa para ele, para ela, para a filha, para a mãe. E para quem
+          veste 46, 48, 50 — porque estilo não tem tamanho único.
+        </p>
+      </div>
+
+      <div class="loja__body">
+        <figure class="loja__media">
+          <Image
+            src={manequins}
+            alt="Arara de roupas da Lume Modas com peças em tons de creme, caramelo e verde"
+            width={900}
+            sizes="(max-width: 760px) 100vw, 40vw"
+            loading="lazy"
+          />
+          <figcaption class="loja__caption">
+            Arara da loja, com as peças da semana.
+          </figcaption>
+        </figure>
+
+        <div class="loja__text">
+          <p>
+            A Lume veste a família inteira sem complicar. Aqui você
+            encontra peça para o trabalho, para o fim de semana e para a ocasião
+            que pede um pouco mais — com o atendimento de quem conhece o seu
+            tamanho e o seu estilo.
+          </p>
+          <p>
+            Cada arara é montada pensando em combinações que funcionam de
+            verdade: o que combina com o quê, o que veste bem em quem. Se a peça
+            não for a sua, a gente fala.
+          </p>
+
+          <ul class="pillars">
+            <li>Atendimento que lembra o seu nome e o seu tamanho.</li>
+            <li>Do P ao plus size, com modelagem pensada para o corpo real.</li>
+            <li>Peças escolhidas uma a uma, sem arara lotada por lotar.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="stats">
+        {numeros.map((numero) => (
+          <div class="stat">
+            <span class="stat__valor">{numero.valor}</span>
+            <span class="stat__rotulo">{numero.rotulo}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Vitrine ===== -->
+  <section class="section section--laca" id="vitrine" aria-labelledby="vitrine-title">
+    <div class="wrap">
+      <div class="head">
+        <div class="head__title">
+          <p class="label">Vitrine</p>
+          <h2 id="vitrine-title">Escolha por onde começar.</h2>
+        </div>
+        <p class="head__aside">
+          Feminino e masculino na mesma loja, do P ao plus size. Se preferir, a
+          gente separa as peças no WhatsApp antes de você vir.
+        </p>
+      </div>
+
+      <div class="tiles">
+        {categorias.map((categoria) => {
+          const foto = categoria.imagem ? imagens[categoria.imagem] : null;
+          const classes = [
+            'tile',
+            categoria.variacao === 'foto' ? 'tile--foto' : '',
+            categoria.variacao === 'creme' ? 'tile--creme' : '',
+            categoria.variacao === 'terracota' ? 'tile--terracota' : '',
+            categoria.nome === 'Feminino' ? 'tile--feminino' : '',
+            categoria.nome === 'Masculino' ? 'tile--masculino' : '',
+          ]
+            .filter(Boolean)
+            .join(' ');
+
+          return (
+            <a
+              class={classes}
+              href={whatsappLink(categoria.mensagem)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {foto && (
+                <Image
+                  src={foto}
+                  alt={categoria.alt ?? ''}
+                  width={1000}
+                  sizes="(max-width: 760px) 100vw, 55vw"
+                  loading="lazy"
+                />
+              )}
+              <h3 class="tile__name">{categoria.nome}</h3>
+              <p class="tile__desc">{categoria.descricao}</p>
+              {categoria.nome === 'Plus size' && (
+                <div class="tile__sizes" aria-hidden="true">
+                  <span>P</span>
+                  <span>M</span>
+                  <span>G</span>
+                  <span>GG</span>
+                  <span>Plus</span>
+                </div>
+              )}
+              {categoria.nome === 'Acessórios' && (
+                <Monogram class="tile__mark" decorative />
+              )}
+              <span class="tile__cta">Ver no WhatsApp</span>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Tendências ===== -->
+  <section class="section section--creme" id="tendencias" aria-labelledby="tendencias-title">
+    <div class="wrap">
+      <div class="head">
+        <div class="head__title">
+          <p class="label label--dark">Tendências</p>
+          <h2 id="tendencias-title">O verão 2027 já chegou na arara.</h2>
+        </div>
+        <p class="head__aside">
+          A gente acompanha as tendências e traduz para o que funciona no dia a
+          dia. Sem look impossível, sem peça que você não vai usar.
+        </p>
+      </div>
+
+      <div class="trends__list">
+        {tendencias.map((tendencia) => (
+          <article class="trend">
+            <h3 class="trend__nome">{tendencia.nome}</h3>
+            <p class="trend__texto">{tendencia.texto}</p>
+            <a
+              class="trend__link"
+              href={loja.instagram.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ver no Instagram
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <div class="trends__foot">
+        <span>Conteúdo produzido pela loja para o Instagram.</span>
+        <a href={loja.instagram.url} target="_blank" rel="noopener noreferrer">
+          {loja.instagram.handle}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Provador ===== -->
+  <section class="provador" id="provador" aria-labelledby="provador-title">
+    <div class="provador__media">
+      <Image
+        src={provador}
+        alt="Espelho e araras da Lume Modas, com pessoa experimentando uma peça"
+        width={1000}
+        sizes="(max-width: 960px) 100vw, 50vw"
+        loading="lazy"
+      />
+    </div>
+    <div class="provador__body">
+      <p class="label">Provador</p>
+      <h2 class="provador__title" id="provador-title">
+        Prove com calma. <em>A gente opina quando você pede.</em>
+      </h2>
+      <p class="provador__text">
+        Nosso provador tem espaço, luz boa e espelho de corpo inteiro. Traga as
+        peças que você quer testar, monte combinações e saia daqui com certeza —
+        não com dúvida.
+      </p>
+      <ul class="provador__list">
+        <li>Espaço e luz para experimentar sem pressa.</li>
+        <li>Espelho de corpo inteiro.</li>
+        <li>Opinião sincera só quando você pede.</li>
+      </ul>
+      <a class="link-arrow" href={zapProvador} target="_blank" rel="noopener noreferrer">
+        Separar peças no WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== Avaliações ===== -->
+  <section class="section section--creme" id="avaliacoes" aria-labelledby="avaliacoes-title">
+    <div class="wrap avaliacoes">
+      <div class="avaliacoes__head">
+        <p class="label label--dark">Avaliações</p>
+        <h2 class="head__title" id="avaliacoes-title">Quem entra, volta.</h2>
+
+        <div class="nota">
+          <span class="nota__valor">{String(loja.google.nota).replace('.', ',')}</span>
+          <div class="nota__info">
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <span>{loja.google.total} avaliações</span>
+          </div>
+        </div>
+
+        <p class="reviews__note">Depoimentos ilustrativos de clientes.</p>
+      </div>
+
+      <div class="reviews">
+        {depoimentos.map((depoimento) => (
+          <article class="review">
+            <p class="review__stars" aria-label="5 de 5 estrelas">★★★★★</p>
+            <blockquote class="review__quote">“{depoimento.texto}”</blockquote>
+            <span class="review__author">{depoimento.autor} · cliente Lume</span>
+          </article>
+        ))}
+        <p class="reviews__note">
+          Depoimentos e avaliações fictícios, criados para este projeto demonstrativo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Visite ===== -->
+  <section class="section section--laca" id="visite" aria-labelledby="visite-title">
+    <div class="wrap visite">
+      <div class="visite__media">
+        <Image
+          src={fachada}
+          alt="Interior da Lume Modas com araras de roupa e espelho"
+          width={1100}
+          sizes="(max-width: 960px) 100vw, 50vw"
+          loading="lazy"
+        />
+        <div class="hero__plaque">
+          <span>Centro · Canoas</span>
+          <span>Rua Sete de Setembro, 820</span>
+        </div>
+      </div>
+
+      <div class="visite__body">
+        <p class="label">Visite</p>
+        <h2 class="visite__title" id="visite-title">
+          Venha provar <em>pessoalmente.</em>
+        </h2>
+
+        <p class="visite__address">
+          <strong>{loja.endereco.rua}</strong><br />
+          {loja.endereco.bairro} · {loja.endereco.cidade}/{loja.endereco.uf}<br />
+          CEP {loja.endereco.cep} · {loja.telefone.exibicao}
+        </p>
+
+        <ul class="hours">
+          {loja.horarios.map((horario) => (
+            <li>
+              <span>{horario.dia}</span>
+              <span>{horario.horario}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div class="visite__actions">
+          <a
+            class="btn btn--gold"
+            href={loja.google.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Traçar rota
+          </a>
+          <a
+            class="btn btn--ghost"
+            href={whatsappLink('Olá! Vim pelo site e quero confirmar o horário de hoje.')}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Chamar no WhatsApp
+          </a>
+        </div>
+
+        <div class="visite__social">
+          <a href={loja.instagram.url} target="_blank" rel="noopener noreferrer">
+            Instagram {loja.instagram.handle}
+          </a>
+          <a href={loja.facebook.url} target="_blank" rel="noopener noreferrer">
+            Facebook
+          </a>
+          <a href={loja.google.url} target="_blank" rel="noopener noreferrer">
+            Mapa
+          </a>
+        </div>
+
+        <p class="visite__note">
+          Horários ilustrativos. Projeto demonstrativo.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

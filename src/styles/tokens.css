@@ -1,0 +1,61 @@
+﻿/* Fontes locais — Bodoni Moda (display) e Jost (texto) */
+@font-face {
+  font-family: 'Bodoni Moda';
+  src: url('../assets/fonts/bodoni-moda-latin.woff2') format('woff2');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bodoni Moda';
+  src: url('../assets/fonts/bodoni-moda-italic-latin.woff2') format('woff2');
+  font-weight: 400 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Jost';
+  src: url('../assets/fonts/jost-latin.woff2') format('woff2');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Cor — identidade Lume */
+  --laca: #0a0908;
+  --laca-2: #12100d;
+  --ouro: #c2a15f;
+  --ouro-luz: #e6cd96;
+  --creme: #f2ebdc;
+  --creme-2: #e5dac4;
+  --terracota: #b2542e;
+  --tinta: #24211c;
+  --linha: rgba(194, 161, 95, 0.28);
+  --linha-forte: rgba(194, 161, 95, 0.55);
+  --creme-12: rgba(242, 235, 220, 0.12);
+  --creme-68: rgba(242, 235, 220, 0.68);
+
+  /* Tipografia */
+  --font-display: 'Bodoni Moda', 'Times New Roman', serif;
+  --font-body: 'Jost', system-ui, -apple-system, sans-serif;
+  --t-hero: clamp(2.9rem, 5.6vw, 5.15rem);
+  --t-h2: clamp(2.1rem, 4.4vw, 3.6rem);
+  --t-h3: clamp(1.35rem, 2.2vw, 1.8rem);
+  --t-lead: clamp(1.05rem, 1.5vw, 1.22rem);
+  --t-body: 1rem;
+  --t-small: 0.875rem;
+  --t-micro: 0.75rem;
+
+  /* Layout */
+  --container: 1240px;
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --section-y: clamp(5rem, 11vw, 9rem);
+  --header-h: 80px;
+
+  /* Movimento */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 500ms;
+}

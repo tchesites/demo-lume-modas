@@ -1,0 +1,88 @@
+---
+import Monogram from './Monogram.astro';
+import { loja, whatsappLink } from '../data/loja.js';
+import { url } from '../utils/url.js';
+
+const zap = whatsappLink('Olá! Vim pelo site e gostaria de falar com a loja.');
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="brand" href={url('/')} aria-label={`${loja.nome} — início`}>
+          <Monogram class="brand__mark" decorative />
+          <span class="brand__text">
+            <span class="brand__name">{loja.nomeCurto}</span>
+            <span class="brand__sub">Modas</span>
+          </span>
+        </a>
+        <p class="footer__tagline">
+          {loja.tagline} Moda feminina e masculina, do P ao plus size, em
+          Canoas.
+        </p>
+      </div>
+
+      <div class="footer__col">
+        <h2 class="footer__title">Navegue</h2>
+        <ul class="footer__list">
+          <li><a href="#a-loja">A loja</a></li>
+          <li><a href="#vitrine">Vitrine</a></li>
+          <li><a href="#tendencias">Tendências</a></li>
+          <li><a href="#avaliacoes">Avaliações</a></li>
+          <li><a href="#visite">Visite</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h2 class="footer__title">Contato</h2>
+        <ul class="footer__list">
+          <li>
+            <a href={`tel:+${loja.telefone.numero}`}>{loja.telefone.exibicao}</a>
+          </li>
+          <li>
+            <a href={zap} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          </li>
+          <li>
+            <a href={loja.instagram.url} target="_blank" rel="noopener noreferrer">
+              Instagram
+            </a>
+          </li>
+          <li>
+            <a href={loja.facebook.url} target="_blank" rel="noopener noreferrer">
+              Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer__col footer__col--wide">
+        <h2 class="footer__title">Onde estamos</h2>
+        <ul class="footer__list">
+          <li>{loja.endereco.rua}</li>
+          <li>{loja.endereco.bairro} · {loja.endereco.cidade}/{loja.endereco.uf}</li>
+          <li>CEP {loja.endereco.cep}</li>
+          <li>
+            <a href={loja.google.url} target="_blank" rel="noopener noreferrer">
+              Ver no mapa
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>
+        © {year} {loja.nome} — Projeto demonstrativo. Marca, dados, fotos e
+        depoimentos fictícios.
+      </p>
+      <p>
+        Site por
+        <a href="https://tchesites.com.br" target="_blank" rel="noopener noreferrer">
+          Tchê Sites
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>

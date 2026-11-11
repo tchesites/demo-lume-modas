@@ -1,0 +1,27 @@
+---
+interface Props {
+  class?: string;
+  title?: string;
+  decorative?: boolean;
+}
+
+const {
+  class: className = '',
+  title = 'Lume Modas',
+  decorative = false,
+} = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 120 100"
+  fill="currentColor"
+  role={decorative ? undefined : 'img'}
+  aria-label={decorative ? undefined : title}
+  aria-hidden={decorative ? 'true' : undefined}
+  focusable="false"
+>
+  <path d="M26 12h18c-1.6 24-1.6 50 0 76H26c1.6-26 1.6-52 0-76Z"></path>
+  <path d="M26 76h56v12H26z"></path>
+  <path d="M96 10 106 22 96 34 86 22 96 10Z"></path>
+</svg>

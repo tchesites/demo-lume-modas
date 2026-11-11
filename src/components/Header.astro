@@ -1,0 +1,80 @@
+---
+import Monogram from './Monogram.astro';
+import { loja, whatsappLink } from '../data/loja.js';
+import { url } from '../utils/url.js';
+
+const links = [
+  { href: '#a-loja', label: 'A loja' },
+  { href: '#vitrine', label: 'Vitrine' },
+  { href: '#tendencias', label: 'Tendências' },
+  { href: '#visite', label: 'Visite' },
+];
+
+const zap = whatsappLink('Olá! Vim pelo site e gostaria de ver as novidades.');
+---
+
+<header class="site-header" id="topo">
+  <div class="wrap header__inner">
+    <a class="brand" href={url('/')} aria-label={`${loja.nome} — início`}>
+      <Monogram class="brand__mark" decorative />
+      <span class="brand__text">
+        <span class="brand__name">{loja.nomeCurto}</span>
+        <span class="brand__sub">Modas</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Navegação principal">
+      <ul class="nav__list">
+        {links.map((link) => (
+          <li>
+            <a class="nav__link" href={link.href}>{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <a class="header__phone" href={`tel:+${loja.telefone.numero}`}>
+        {loja.telefone.exibicao}
+      </a>
+      <a class="header__cta" href={zap} target="_blank" rel="noopener noreferrer">
+        WhatsApp
+      </a>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="menu-mobile"
+        aria-label="Abrir menu"
+      >
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="menu-mobile" hidden>
+  <nav aria-label="Navegação mobile">
+    <ul class="mobile-menu__list">
+      {links.map((link) => (
+        <li>
+          <a class="mobile-menu__link" href={link.href}>{link.label}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <div class="mobile-menu__foot">
+    <p>
+      {loja.endereco.rua}<br />
+      {loja.endereco.bairro} · {loja.endereco.cidade}/{loja.endereco.uf}
+    </p>
+    <a class="btn btn--gold" href={zap} target="_blank" rel="noopener noreferrer">
+      Chamar no WhatsApp
+    </a>
+    <a class="link-arrow" href={loja.instagram.url} target="_blank" rel="noopener noreferrer">
+      {loja.instagram.handle}
+    </a>
+  </div>
+</div>

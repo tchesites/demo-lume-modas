@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 100" role="img" aria-labelledby="lumeTitle">
+  <title id="lumeTitle">Monograma L — Lume Modas</title>
+  <g fill="currentColor">
+    <!-- L: haste com leve cintura -->
+    <path d="M26 12h18c-1.6 24-1.6 50 0 76H26c1.6-26 1.6-52 0-76Z"/>
+    <!-- L: base -->
+    <path d="M26 76h56v12H26z"/>
+    <!-- lume: pequeno losango -->
+    <path d="M96 10 106 22 96 34 86 22 96 10Z"/>
+  </g>
+</svg>
